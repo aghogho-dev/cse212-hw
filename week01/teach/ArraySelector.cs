@@ -1,3 +1,6 @@
+using System.Globalization;
+using System.Linq.Expressions;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -11,6 +14,24 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return new int[0];
+        int[] answer = new int[select.Length];
+
+        int idxFirst = 0;
+        int idxSecond = 0;
+
+        for (int i = 0; i < select.Length; i++)
+        {
+            if (select[i] == 1)
+            {
+                answer[i] =  list1[idxFirst++];
+            }
+            else
+            {
+                answer[i] = list2[idxSecond++];
+            }
+            
+        }
+
+        return answer;
     }
 }
