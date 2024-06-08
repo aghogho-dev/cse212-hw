@@ -38,8 +38,14 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        double[] multiples = new double[length];
 
-        return new double[0]; // replace this return statement with your own
+        for (int i = 1; i <= length; i++)
+        {
+            multiples[i-1] = i * number;
+        }
+
+        return multiples; // replace this return statement with your own
     }
     
     /// <summary>
@@ -57,5 +63,9 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        List<int> getRight = data.GetRange(data.Count - amount, amount);
+        
+        data.RemoveRange(data.Count - amount, amount);
+        data.InsertRange(0, getRight);
     }
 }
