@@ -66,8 +66,8 @@
         Console.WriteLine("---------");
 
         //Test 4
-        // Scenario: 
-        // Result:
+        // Scenario: Deque items with the values and priorities: (Attend class, 10), (Study 30 mins, 2), (Sleep 4 hours, 5), (Play Game, 0), (Do research, 5)
+        // Result: Attend Class, Sleep 4 hours, Do research, Study 30 min, Play Game, Watch Movie
         Console.WriteLine("Test 4");
 
         priority = new PriorityQueue();
