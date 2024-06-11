@@ -39,6 +39,14 @@ public class TakingTurnsQueue {
                 _people.Enqueue(person);
             }
 
+            /* 
+            Add this to take care of infinite turns
+            */
+            else if (person.Turns <= 0)
+            {
+                _people.Enqueue(person);
+            }
+
             Console.WriteLine(person.Name);
         }
     }

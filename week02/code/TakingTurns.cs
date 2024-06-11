@@ -16,6 +16,13 @@
         while (players.Length > 0)
             players.GetNextPerson();
         // Defect(s) Found: 
+        /*
+            It is behaving like a stack that starts operation after all the elements are stacked.
+            Sue is popped out and pushed back until it completes it turn.
+            Same for Tim and Bob.
+            However, it should be a queue with FIFO. So, it should be Bob, Tim, Sue until anyone runs out of turn.
+
+        */
 
         Console.WriteLine("---------");
 
@@ -39,6 +46,15 @@
             players.GetNextPerson();
 
         // Defect(s) Found: 
+        /* 
+            It suffers from the defect described in Test 1.
+
+            Specifically, after 5 rounds, Bob should be out of turn, 
+            Tim should have 3 turns left and Sue should have only 2 turns left.
+            This is before George is even added to the queue.
+
+            Instead it behaves like a stack, Sue goes three times and Time goes twice in the first 5 rounds.
+        */
 
         Console.WriteLine("---------");
 
@@ -57,6 +73,13 @@
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        /* 
+            In addition to what is described in Test 1.
+
+            Tim should have infinite turns.
+
+            But it shows 'No one in the queue'
+        */
 
         Console.WriteLine("---------");
 
@@ -74,6 +97,9 @@
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        /* 
+            In addition to behaving like a stack, Tim should have infinite number of turns
+        */
 
         Console.WriteLine("---------");
 
@@ -84,5 +110,10 @@
         players = new TakingTurnsQueue();
         players.GetNextPerson();
         // Defect(s) Found:
+        /*
+            No defect.
+
+            No one in the queue.
+        */
     }
 }
