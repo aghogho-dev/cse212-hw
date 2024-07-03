@@ -38,14 +38,17 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Initialize an array called multiples to store the results
         double[] multiples = new double[length];
 
+        // Loop through to get a multiple of the number from 1 to the length
         for (int i = 1; i <= length; i++)
         {
             multiples[i-1] = i * number;
         }
 
-        return multiples; // replace this return statement with your own
+        return multiples; // return the multiples
     }
     
     /// <summary>
@@ -63,9 +66,13 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // Get data from the right side
         List<int> getRight = data.GetRange(data.Count - amount, amount);
         
+        // Remove data from the data from the data from the right side
         data.RemoveRange(data.Count - amount, amount);
+
+        // Insert the data from the right side at index 
         data.InsertRange(0, getRight);
     }
 }
