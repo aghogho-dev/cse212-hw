@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Linq;
 
 public static class SetsAndMapsTester {
     public static void Run() {
@@ -111,6 +112,21 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        var duplicates = new HashSet<string>();
+
+        foreach (var word in words)
+        {
+            var reversed = $"{word[1]}{word[0]}";
+            if (words.Contains(reversed))
+            {
+                if (!duplicates.Contains(reversed))
+                {
+                    duplicates.Add(word);
+                    Console.WriteLine("{0} {1}", word, reversed);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -132,6 +148,10 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            var degree = fields[3];
+
+            if (degrees.ContainsKey(degree)) degrees[degree]++;
+            else degrees[degree] = 1;
         }
 
         return degrees;
@@ -158,7 +178,33 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        var check1 = word1.Replace(" ", "").ToLower();
+        var check2 = word2.Replace(" ", "").ToLower();
+
+        var isSameLength = check1.Length == check2.Length;
+
+        if (isSameLength)
+        {
+            var firstDict = new Dictionary<string, int>();
+            var secondDict = new Dictionary<string, int>();
+
+            foreach (var i in check1)
+            {
+                if (firstDict.ContainsKey(i.ToString())) firstDict[i.ToString()]++;
+                else firstDict[i.ToString()] = 1;
+            }
+
+            foreach (var j in check2)
+            {
+                if (secondDict.ContainsKey(j.ToString())) secondDict[j.ToString()]++;
+                else secondDict[j.ToString()] = 1;
+            }
+
+            return firstDict.Count == secondDict.Count && firstDict.OrderBy(x => x.Key).SequenceEqual(secondDict.OrderBy(x => x.Key));
+        }
+        else return isSameLength;
+    
+        
     }
 
     /// <summary>
