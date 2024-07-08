@@ -307,6 +307,38 @@ public static class RecursionTester {
         // TODO Start Problem 5
         // ADD CODE HERE
 
+        var height = maze.Height;
+        var width = maze.Width;
+
+        if (maze.IsValidMove(currPath, x, y)) 
+        {
+            currPath.Add((x, y));
+
+            SolveMaze(maze, x++, y, currPath);
+
+            SolveMaze(maze, x, y++, currPath);
+
+            SolveMaze(maze, x--, y, currPath);
+
+            SolveMaze(maze, x, y--, currPath);
+
+            SolveMaze(maze, x++, y++, currPath);
+
+            SolveMaze(maze, x--, y--, currPath);
+
+            SolveMaze(maze, x++, y--, currPath);
+
+            SolveMaze(maze, x--, y++, currPath);
+        }
+
+        else return;
+
+        if (maze.IsEnd(x, y))
+        {
+            Console.WriteLine(currPath.AsString());
+            // return;
+        }
+        
         // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
     }
 }
