@@ -310,35 +310,24 @@ public static class RecursionTester {
         var height = maze.Height;
         var width = maze.Width;
 
-        if (maze.IsValidMove(currPath, x, y)) 
-        {
-            currPath.Add((x, y));
+        if (x < 0 || x >= width || y < 0 || y >= height || !maze.IsValidMove(currPath, x, y))
+            return;
 
-            SolveMaze(maze, x++, y, currPath);
+        currPath.Add((x, y));
 
-            SolveMaze(maze, x, y++, currPath);
-
-            SolveMaze(maze, x--, y, currPath);
-
-            SolveMaze(maze, x, y--, currPath);
-
-            SolveMaze(maze, x++, y++, currPath);
-
-            SolveMaze(maze, x--, y--, currPath);
-
-            SolveMaze(maze, x++, y--, currPath);
-
-            SolveMaze(maze, x--, y++, currPath);
-        }
-
-        else return;
-
-        if (maze.IsEnd(x, y))
-        {
+        if (maze.IsEnd(x, y)) {
             Console.WriteLine(currPath.AsString());
-            // return;
+            return;
         }
+
+        SolveMaze(maze, x + 1, y, currPath);
         
-        // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        SolveMaze(maze, x, y + 1, currPath);
+        
+        SolveMaze(maze, x - 1, y, currPath);
+        
+        SolveMaze(maze, x, y - 1, currPath);
+
+        currPath.Remove((x, y));
     }
 }
