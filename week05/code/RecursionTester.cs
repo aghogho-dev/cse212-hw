@@ -273,6 +273,23 @@ public static class RecursionTester {
     /// </summary>
     public static void WildcardBinary(string pattern) {
         // TODO Start Problem 4
+        var index = pattern.IndexOf("*");
+
+        if (index == - 1)
+        {
+            Console.WriteLine(pattern);
+        }
+        else
+        {
+            char[] patternArray = pattern.ToArray();
+            patternArray[index] = '0';
+
+            WildcardBinary(new string(patternArray));
+
+            patternArray[index] = '1';
+            WildcardBinary(new string(patternArray));
+        }
+
     }
 
     /// <summary>
